@@ -94,6 +94,11 @@ PF_COL3=1
 # Valid: int
 PF_ALIGN=""
 
+# Text indentation at the top
+# Default: unset (auto)
+# Valid: int
+PF_TOP=""
+
 # Which ascii art to use.
 # Default: unset (auto)
 # Valid: string
@@ -103,6 +108,9 @@ PF_ASCII="openbsd"
 # than just 'pfetch' and can be passed using
 # 'HOSTNAME=cool_pc pfetch' to restrict their
 # usage solely to 'pfetch'.
+
+# Which os to display
+PF_OS="Padavan"
 
 # Which user to display.
 USER=""
@@ -120,7 +128,7 @@ SHELL=""
 XDG_CURRENT_DESKTOP=""
 ```
 
-#### Padavan install
+### Padavan install
 1) (If there is a problem with certificates at wget) install nginx on your machine
 2) Put in nginx.conf the ip address that is specified in the router (lan ip address)
 3) Drop the downloaded pfetch into the html folder
