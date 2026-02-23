@@ -1,5 +1,5 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/6799467/65944518-68834d80-e421-11e9-9b14-6ca26a16108a.png" width="350px"></p>
-<h1 align="center">pfetch</h1>
+<h1 align="center">pfetch-padavan</h1>
 <p align="center">A pretty system information tool written in POSIX sh</p><br>
 
 <img src="https://user-images.githubusercontent.com/6799467/65945384-5bfff480-e423-11e9-863e-4e7cf16eb648.png" width="40%" align="right">
@@ -128,7 +128,8 @@ SHELL=""
 XDG_CURRENT_DESKTOP=""
 ```
 
-### Padavan install
+## Padavan Install
+<img width="926" height="416" alt="padavan" src="https://github.com/user-attachments/assets/1cd5ba0a-3724-4c8a-961c-c7d1a1b5c95f" /><br>
 1) (If there is a problem with certificates at wget) install nginx on your machine
 2) Put in nginx.conf the ip address that is specified in the router (lan ip address)
 3) Drop the downloaded pfetch into the html folder
