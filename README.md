@@ -26,7 +26,7 @@ picture"!
 ## OS support
 
 - **Linux**
-    - Alpine Linux, Arch Linux, Arco Linux, Artix Linux, CentOS, Dahlia, Debian, Devuan, Elementary, EndeavourOS, Fedora, Garuda Linux, Gentoo, Guix, Hyperbola, instantOS, KISS Linux, Linux Lite, Linux Mint, Mageia, Manjaro, MX Linux, NixOS, OpenSUSE, Parabola, Pop!\_OS, PureOS, Slackware, Solus, Ubuntu and Void Linux.
+    - Alpine Linux, Arch Linux, Arco Linux, Artix Linux, CentOS, Dahlia, Debian, Devuan, Elementary, EndeavourOS, Fedora, Garuda Linux, Gentoo, Guix, Hyperbola, instantOS, KISS Linux, Linux Lite, Linux Mint, Mageia, Manjaro, MX Linux, NixOS, OpenSUSE, Parabola, Pop!\_OS, PureOS, Slackware, Solus, Ubuntu, Void Linux and Padavan.
     - All other distributions are supported with a generic penguin logo.
 - **Android**
 - **BSD**
@@ -119,6 +119,23 @@ SHELL=""
 # Which desktop environment to display.
 XDG_CURRENT_DESKTOP=""
 ```
+
+#### Padavan install
+1) (If there is a problem with certificates at wget) install nginx on your machine
+2) Put in nginx.conf the ip address that is specified in the router (lan ip address)
+3) Drop the downloaded pfetch into the html folder
+4) In the router: ```wget -O /etc/storage/pfetch http://192.168.0.xxx/pfetch```
+5) After download ```chmod +x /etc/storage/pfetch```
+6) In the Router's WebUI: Customization - Scripts, Run After Router Started:
+``` 
+cp -f /etc_ro/profile /tmp/profile
+cat << 'EOF' >> /tmp/profile
+alias pfetch='PF_OS="Padavan" PF_ASCII="padavan" PF_INFO="ascii title os kernel uptime memory shell editor palette" PF_TOP=4 PF_ALIGN=15 EDITOR="vi" /etc/storage/pfetch'
+EOF
+mount --bind /tmp/profile /etc/profile
+```
+7) Reboot or manual input in terminal:
+ ```alias pfetch='PF_OS="Padavan" PF_ASCII="padavan" PF_INFO="ascii title os kernel uptime memory shell editor palette" PF_TOP=4 PF_ALIGN=15 EDITOR="vi" /etc/storage/pfetch'```
 
 ## Credit
 
