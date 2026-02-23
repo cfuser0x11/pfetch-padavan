@@ -250,6 +250,9 @@ get_os() {
                         ;;
                     esac
                 done < /etc/os-release
+                
+            elif [ -n "$PF_OS" ]; then
+                distro=$PF_OS
 
             else
                 # Special cases for (independent) distributions which
@@ -1662,6 +1665,24 @@ get_ascii() {
 			EOF
         ;;
 
+        ([Pp]adavan*)
+			read_ascii 6 <<-EOF
+				
+                ${c7}                 ${c4}______           
+				${c7}                                ${c4}/__    \\__        
+				${c7}                                   ${c4}\\___   \\__     
+				${c7}        ____                      ${c6}____ ${c4}\\_    \\ 
+				${c7}        |  |          ____ ___   ${c6}/__  \\__ ${c4}\\__/    ${c4}│
+				${c7}  ______│  │ ____    /  / |  |______${c6}\\__  \\        ${c6}│
+				${c7} /   __    │ \\  \\   /  /  │    __   \\  ${c6}\\_/        ${c6}│
+				${c7}│   /  \\   │  \\  \\_/  /   │   /  \\   \\            ${c6}│
+				${c7}│   \\__/   │   \\ ${c6}>.<${c7} /    │  │    │  │            ${c6}│ 
+				${c7}│    _____/     \\   /     │  |    │  │            ${c4}│
+				${c7}│   │            \\_/      |__|    |__|            ${c4}│
+				${c7}|___|
+		EOF
+        ;;
+
         ([Pp]arabola*)
             read_ascii 5 <<-EOF
 				${c5}  __ __ __  _
@@ -1836,7 +1857,8 @@ get_ascii() {
         esc_p SGR 1
         printf '%s' "$ascii"
         esc_p SGR 0
-        esc_p CUU "$ascii_height"
+        esc_p CUU "$((ascii_height - PF_TOP))"
+        info_height=PF_TOP
     } >&6
 }
 
@@ -1943,16 +1965,16 @@ EOF
     # N lines.
     #
     # This was a ternary operation but they aren't supported in Minix's shell.
-    [ "${info_height:-0}" -lt "${ascii_height:-0}" ] &&
-        cursor_pos=$((ascii_height - info_height))
+        [ "${info_height:-0}" -lt "${ascii_height:-0}" ] &&
+            cursor_pos=$((ascii_height - info_height))
 
-    # Print '$cursor_pos' amount of newlines to correctly position the
-    # cursor. This used to be a 'printf $(seq X X)' however 'seq' is only
-    # typically available (by default) on GNU based systems!
-    while [ "${i:=0}" -le "${cursor_pos:-0}" ]; do
-        printf '\n'
-        i=$((i + 1))
-    done >&6
+        # Print '$cursor_pos' amount of newlines to correctly position the
+        # cursor. This used to be a 'printf $(seq X X)' however 'seq' is only
+        # typically available (by default) on GNU based systems!
+        while [ "${i:=0}" -le "${cursor_pos:-0}" ]; do
+            printf '\n'
+            i=$((i + 1))
+        done >&6
 }
 
 main "$@"
